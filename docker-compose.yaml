@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    container_name: pharaoh_db
+    image: library/postgres
+    env_file: pharaoh/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pharaoh-data:/var/lib/postgresql/data
+      - ./:/source
+    networks:
+      - internal
+
+  web:
+    container_name: pharaoh_app
+    volumes:
+      - ./:/source
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - internal
+    environment:
+      - POSTGRES_HOST=db
+    command: '/source/docker-dev-init.sh'
+
+volumes:
+  pharaoh-data:
+    driver: local
+
+networks:
+  internal:
