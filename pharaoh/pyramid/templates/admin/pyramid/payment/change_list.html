@@ -1,0 +1,11 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools-items %}
+{% url "admin:calculate-payments" as calculate_payments_url %}
+    {{ block.super }}
+    <li>
+        <a href="{{  calculate_payments_url }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="addlink">
+            Calculate
+        </a>
+    </li>
+{% endblock %}
