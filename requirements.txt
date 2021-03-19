@@ -25,3 +25,4 @@ django-celery-beat<2.1
 django-modeltranslation<0.16
 unidecode
 django-admin-rangefilter<0.6.4
+django-jazzmin

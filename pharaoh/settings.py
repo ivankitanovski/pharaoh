@@ -39,7 +39,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
+    'jazzmin',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'pharaoh.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'pharaoh/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,4 +135,19 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = env("MEDIA_ROOT", default=os.path.join(BASE_DIR, "media/"))
 MEDIA_URL = env("MEDIA_URL", default="../media/")
 
-STATIC_ROOT = os.path.join(BASE_DIR, env("STATIC_ROOT", default="../static/"))
+STATIC_ROOT = os.path.join(BASE_DIR, env("STATIC_ROOT", default="static/"))
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Capital Finance",
+    "site_header": "Capital Finance",
+    "site_logo": "logo.png",
+    "copyright": "Capital Finance",
+    "icons": {
+        "pyramid.Agent": "fas fa-users",
+        "pyramid.Level": "fas fa-university",
+        "pyramid.Payment": "fas fa-dollar-sign",
+        "pyramid.Product": "fas fa-money-check",
+        "pyramid.Transaction": "fas fa-book",
+    },
+}

@@ -3,9 +3,7 @@
 {% block object-tools-items %}
 {% url "admin:calculate-payments" as calculate_payments_url %}
     {{ block.super }}
-    <li>
-        <a href="{{  calculate_payments_url }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="addlink">
+        <a href="{{  calculate_payments_url }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-outline-primary" style="float: right;">
             Calculate
         </a>
-    </li>
 {% endblock %}

@@ -3,12 +3,13 @@ from django.shortcuts import redirect
 from django.urls import path, reverse
 from django.utils.translation import gettext_lazy as _
 
-from .models import Agent, Product, Pyramid, Threshold, Transaction, Payment
+from .models import Agent, Product, Level, Transaction, Payment
 from .utils import calculate_payments_for_agents
 
 
 class AgentAdmin(admin.ModelAdmin):
-    list_display = ("name", "parent")
+    list_display = ("name", "parent", "points")
+    search_fields = ("name", )
 
     # def save_form(self, request, form, change):
     #     super().save_form(request, form, change)
@@ -17,21 +18,16 @@ admin.site.register(Agent, AgentAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", )
+    list_display = ("name", "coefficient", "adds_to_points", "adds_to_payment",)
+    list_filter = ("adds_to_points", "adds_to_payment",)
 
 admin.site.register(Product, ProductAdmin)
 
 
-class PyramidAdmin(admin.ModelAdmin):
-     pass
+class LevelAdmin(admin.ModelAdmin):
+    list_display = ("level", "name", "points_from", "points_to",)
 
-admin.site.register(Pyramid, PyramidAdmin)
-
-
-class ThresholdAdmin(admin.ModelAdmin):
-    list_display = ("level", "amount",)
-
-admin.site.register(Threshold, ThresholdAdmin)
+admin.site.register(Level, LevelAdmin)
 
 
 class TransactionAdmin(admin.ModelAdmin):
@@ -65,11 +61,5 @@ class PaymentAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
-
-    def has_change_permission(self, request, obj=None):
-        return True
-
-    def has_delete_permission(self, request, obj=None):
-        return True
 
 admin.site.register(Payment, PaymentAdmin)

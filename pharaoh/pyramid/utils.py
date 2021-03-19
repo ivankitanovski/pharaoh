@@ -1,4 +1,4 @@
-from pharaoh.pyramid.models import Transaction, Payment, Agent, Product, Threshold
+from pharaoh.pyramid.models import Transaction, Payment, Agent
 from datetime import datetime
 from django.db.models import Sum, Prefetch, Q, Sum
 
