@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ title }} | {{ jazzmin_settings.site_title }}{% endblock %}
+{% block extrastyle %}{{ block.super }}
+    <style type="text/css">
+        .select2-container--default .select2-selection--single .select2-selection__arrow  {
+            top: 8px !important;
+        }
+
+        .select2-container--default .select2-selection--single  {
+            padding-top: 9px;
+            width: 190px;
+        }
+
+        .main-footer .float-right.d-none.d-sm-inline {
+            display: none !important;
+        }
+
+    </style>
+{% endblock%}
+{% block userlinks %}
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+{% endblock %}
